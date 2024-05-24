@@ -12,6 +12,9 @@ var (
 	h string
 )
 
+/**
+* configure the flags used in the CLI
+*/
 func init() {
 	set := goflags.NewFlagSet()
 	
@@ -28,10 +31,12 @@ func init() {
 func main() {
 	gologger.Info().Msg("Discrete Logarithm Problem Verifier")
 
+	// checks if the user input values for p, g and h
 	if p == "" || g == "" || h == "" {
 		gologger.Fatal().Msg("invalid value for p, g, or h")
 	}
 
+	// runs the algorithm to find 'x'
 	res := discrete.Compute(p, g, h)
 
 	gologger.Info().Msgf("Computation result: %v\n", res)
