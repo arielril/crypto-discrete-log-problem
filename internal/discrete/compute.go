@@ -7,6 +7,9 @@ import (
 	"github.com/projectdiscovery/gologger"
 )
 
+/**
+ * Compute computes the value of `x=x0*B+x1`
+ */
 func Compute(ps, gs, hs string) string {
 	p, g, h := decimal.New(0,0),decimal.New(0,0),decimal.New(0,0)
 	p, _ = p.SetString(ps)
@@ -26,18 +29,18 @@ func Compute(ps, gs, hs string) string {
 
 	hTable := make(map[int64]int64, hashTableSize)
 
+	// creates the hash table for the left hand side of the equation `h/(g^x1) = (g^B)^x0`
 	for x1 := int64(0); x1 <= hashTableSize; x1 += 1 {
 		x1Big := decimal.New(x1, 0)
 
 		leftHandSide := decimal.New(0,0)
 		
-		// h/(g^x1) = (g^B)^x0
+		// (g^B)^x0
 		leftHandSideQuocient := decimal.New(0,0)
 		_ = leftHandSideQuocient.Context.Pow(leftHandSideQuocient, g, x1Big)
 
 		_ = leftHandSide.Quo(h, leftHandSideQuocient)
-		// gologger.Info().Msgf("executing the division %v / %v == %v \n", h, leftHandSideQuocient, leftHandSide)
-		// return ""
+		gologger.Debug().Msgf("executing the division %v / %v == %v \n", h, leftHandSideQuocient, leftHandSide)
 		
 		lhsInt64, _ := leftHandSide.Int64()
 		x1BigInt64, _ := x1Big.Int64()
@@ -51,10 +54,11 @@ func Compute(ps, gs, hs string) string {
 	foundX0 := int64(0);
 	foundX1 := int64(0);
 
+	// computes the right hand side of the equation `h/(g^x1) = (g^B)^x0`
 	for x0 := int64(0); x0 <= hashTableSize; x0 += 1 {
 		x0Big := decimal.New(x0, 0)
 
-		// h/(g^x1) = (g^B)^x0
+		// (g^B)^x0
 		rightHandSide := decimal.New(0,0)
 		_ = rightHandSide.Context.Pow(rightHandSide, g, B)
 		_ = rightHandSide.Context.Pow(rightHandSide, rightHandSide, x0Big)
@@ -84,7 +88,7 @@ func Compute(ps, gs, hs string) string {
 		}
 	}
 
-	return ""
+	return "x value not found"
 }
 
 func verifyResult(h, g, B, x0, x1 *decimal.Big) bool {

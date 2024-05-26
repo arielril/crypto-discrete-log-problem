@@ -41,10 +41,3 @@ func main() {
 
 	gologger.Info().Msgf("Computation result: %v\n", res)
 }
-
-func setGroup(set *goflags.FlagSet, groupName, description string, flags ...*goflags.FlagData) {
-	set.SetGroup(groupName, description)
-	for _, currentFlag := range flags {
-		currentFlag.Group(groupName)
-	}
-}
