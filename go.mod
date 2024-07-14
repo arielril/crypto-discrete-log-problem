@@ -3,12 +3,17 @@ module github.com/arielril/crypto-discrete-log-problem
 go 1.22.3
 
 require (
+	github.com/ericlagergren/decimal v0.0.0-20240411145413-00de7ca16731
+	github.com/projectdiscovery/goflags v0.1.52
+	github.com/projectdiscovery/gologger v1.1.12
+)
+
+require (
 	github.com/andybalholm/brotli v1.1.0 // indirect
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2 // indirect
 	github.com/aymerick/douceur v0.2.0 // indirect
 	github.com/cnf/structhash v0.0.0-20201127153200-e1b16c1ebc08 // indirect
 	github.com/dsnet/compress v0.0.2-0.20210315054119-f66993602bf5 // indirect
-	github.com/ericlagergren/decimal v0.0.0-20240411145413-00de7ca16731 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/gorilla/css v1.0.1 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
@@ -25,8 +30,6 @@ require (
 	github.com/pierrec/lz4/v4 v4.1.21 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/projectdiscovery/blackrock v0.0.1 // indirect
-	github.com/projectdiscovery/goflags v0.1.52 // indirect
-	github.com/projectdiscovery/gologger v1.1.12 // indirect
 	github.com/projectdiscovery/utils v0.0.93 // indirect
 	github.com/saintfish/chardet v0.0.0-20230101081208-5e3ef4b5456d // indirect
 	github.com/tidwall/gjson v1.17.1 // indirect
